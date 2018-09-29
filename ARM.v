@@ -120,7 +120,13 @@ module ARM(
     // datapath connections here
     assign WE_PC = 1 ; // Will need to control it for multi-cycle operations (Multiplication, Division) and/or Pipelining with hazard hardware.
 
-
+	// Connect input wires for RegFile
+	assign WE3 = RegWrite;
+	assign A1 = RegSrc[0] ? 2'd15 : Instr[19:16];
+	assign A2 = RegSrc[1] ? Instr[15:12] : Instr[3:0];
+	assign A3 = Instr[15:12];
+	assign WD3 = MemtoReg ? ReadData : ALUResult;
+	assign R15 = PCPlus8;
     
     // Instantiate RegFile
     RegFile RegFile1( 
@@ -134,6 +140,9 @@ module ARM(
                     RD1,
                     RD2     
                 );
+				
+	// Connect input wires for Extend
+	assign InstrImm = Instr[23:0];
                 
      // Instantiate Extend Module
     Extend Extend1(
@@ -141,6 +150,11 @@ module ARM(
                     InstrImm,
                     ExtImm
                 );
+				
+	// Connect input wires for Decoder
+	assign Rd = Instr[15:12];
+	assign Op = Instr[27:26];
+	assign Funct = Instr[25:20];
                 
     // Instantiate Decoder
     Decoder Decoder1(
@@ -158,7 +172,10 @@ module ARM(
                     ALUControl,
                     FlagW
                 );
-                                
+                       
+	// Connect input wires for CondLogic
+	assign Cond = Instr[31:28];
+					   
     // Instantiate CondLogic
     CondLogic CondLogic1(
                     CLK,
@@ -173,6 +190,11 @@ module ARM(
                     RegWrite,
                     MemWrite
                 );
+	
+	// Connect input wires for Shifter
+	assign Sh = Instr[6:5];
+	assign Shamt5 = Instr[11:7];
+	assign ShIn = RD2;
                 
     // Instantiate Shifter        
     Shifter Shifter1(
@@ -181,6 +203,10 @@ module ARM(
                     ShIn,
                     ShOut
                 );
+				
+	// Connect input wires for ALU
+	assign Src_A = RD1;
+	assign Src_B = ALUSrc ? ExtImm : ShOut;
                 
     // Instantiate ALU        
     ALU ALU1(
@@ -191,6 +217,9 @@ module ARM(
                     ALUFlags
                 );                
     
+	// Connect input wires for ProgramCounter
+	assign PC_IN = PCSrc ? WD3 : PCPlus4;
+	
     // Instantiate ProgramCounter    
     ProgramCounter ProgramCounter1(
                     CLK,
