@@ -36,7 +36,7 @@ module Decoder(
     input [3:0] Rd,
     input [1:0] Op,
     input [5:0] Funct,
-    output reg PCS,
+    output PCS,
     output reg RegW,
     output reg MemW,
     output reg MemtoReg,
@@ -49,12 +49,9 @@ module Decoder(
     );
     
     reg ALUOp ;
-    reg [9:0] controls ;
     //<extra signals, if any>
     
-    always @(Rd) begin
-        MemtoReg = 0;
-    end
+    assign PCS = (Rd[0] & Rd[1] & Rd[2] & Rd[3]) | (Op[1] & ~Op[0]);
     
     always @ (*) begin
         case(Op)
@@ -100,7 +97,7 @@ module Decoder(
                         RegW = 1;
                         RegSrc = 2'bX0;
                         ALUOp = 0;
-                    end                 
+                    end                
                 endcase
             end
             2'b10: begin
@@ -112,50 +109,82 @@ module Decoder(
                 RegSrc = 2'bX1;
                 ALUOp = 0;                
             end
-            2'b11: ;        
+            default: begin
+                            MemtoReg = 1'bX;
+                            MemW = 1'bX;
+                            ALUSrc = 1'bX;
+                            ImmSrc = 2'bXX;
+                            RegW = 1'bX;
+                            RegSrc = 2'bXX;
+                            ALUOp = 1'bX;                
+                     end        
         endcase
         
         case(ALUOp)
             1'b0: begin
                 ALUControl = 2'b00;
                 FlagW = 2'b00;
+                NoWrite = 0;
             end
             1'b1: begin
                 case(Funct[4:0])
                     5'b01000: begin
                                     ALUControl = 2'b00;
                                     FlagW = 2'b00;
+                                    NoWrite = 0;
                               end
                     5'b01001: begin
                                     ALUControl = 2'b00;
                                     FlagW = 2'b11;
+                                    NoWrite = 0;
                               end
                     5'b00100: begin
                                     ALUControl = 2'b01;
                                     FlagW = 2'b00;
+                                    NoWrite = 0;
                               end
                     5'b00101: begin
                                     ALUControl = 2'b01;
                                     FlagW = 2'b11;
+                                    NoWrite = 0;
                               end
                     5'b00000: begin
                                     ALUControl = 2'b10;
                                     FlagW = 2'b00;
+                                    NoWrite = 0;
                               end
                     5'b00001: begin
                                     ALUControl = 2'b10;
                                     FlagW = 2'b10;
+                                    NoWrite = 0;
                               end
                     5'b11000: begin
                                     ALUControl = 2'b11;
                                     FlagW = 2'b00;
+                                    NoWrite = 0;
                               end
                     5'b11001: begin
                                     ALUControl = 2'b11;
                                     FlagW = 2'b10;
+                                    NoWrite = 0;
+                              end
+                    5'b10101: begin
+                                    ALUControl = 2'b01;
+                                    FlagW = 2'b11;
+                                    NoWrite = 1;
+                              end
+                    default:  begin
+                                    ALUControl = 2'bXX;
+                                    FlagW = 2'bXX;
+                                    NoWrite = 1'bX;
                               end
                 endcase
             end
+            default:begin
+                        ALUControl = 2'bXX;
+                        FlagW = 2'bXX;
+                        NoWrite = 1'bX;
+                    end
         endcase
     end
     

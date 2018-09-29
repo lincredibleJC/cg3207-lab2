@@ -1,0 +1,6 @@
+project_2.sim/
+project_2.runs/
+project_2.ip_user_files/
+*.jou
+*.str
+*.backup
