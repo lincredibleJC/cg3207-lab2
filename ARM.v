@@ -122,7 +122,7 @@ module ARM(
 
 	// Connect input wires for RegFile
 	assign WE3 = RegWrite;
-	assign A1 = RegSrc[0] ? 2'd15 : Instr[19:16];
+	assign A1 = RegSrc[0] ? 4'd15 : Instr[19:16];
 	assign A2 = RegSrc[1] ? Instr[15:12] : Instr[3:0];
 	assign A3 = Instr[15:12];
 	assign WD3 = MemtoReg ? ReadData : ALUResult;
@@ -140,7 +140,7 @@ module ARM(
                     RD1,
                     RD2     
                 );
-				
+	assign WriteData = RD2;			
 	// Connect input wires for Extend
 	assign InstrImm = Instr[23:0];
                 
@@ -218,6 +218,8 @@ module ARM(
                 );                
     
 	// Connect input wires for ProgramCounter
+	assign PCPlus4 = PC + 4;
+	assign PCPlus8 = PCPlus4 + 4;
 	assign PC_IN = PCSrc ? WD3 : PCPlus4;
 	
     // Instantiate ProgramCounter    
