@@ -48,7 +48,7 @@ module Decoder(
     output reg [1:0] FlagW
     );
     
-    reg ALUOp ;
+    reg [1:0] ALUOp ;
     //<extra signals, if any>
     
     assign PCS = (Rd[0] & Rd[1] & Rd[2] & Rd[3]) | (Op[1] & ~Op[0]);
@@ -64,7 +64,7 @@ module Decoder(
                         ImmSrc = 2'bXX;
                         RegW = 1;
                         RegSrc = 2'b00;
-                        ALUOp = 1;
+                        ALUOp = 2'b10;
                     end
                     1'b1: begin
                         MemtoReg = 0;
@@ -73,7 +73,7 @@ module Decoder(
                         ImmSrc = 2'b00;
                         RegW = 1;
                         RegSrc = 2'bX0;
-                        ALUOp = 1;
+                        ALUOp = 2'b10;
                     end
                 endcase
             end
@@ -86,7 +86,7 @@ module Decoder(
                         ImmSrc = 2'b01;
                         RegW = 0;
                         RegSrc = 2'b10;
-                        ALUOp = 0;                        
+                        ALUOp = 2'b01;                        
                     end
                         
                     1'b1: begin
@@ -96,7 +96,7 @@ module Decoder(
                         ImmSrc = 2'b01;
                         RegW = 1;
                         RegSrc = 2'bX0;
-                        ALUOp = 0;
+                        ALUOp = 2'b01;
                     end                
                 endcase
             end
@@ -107,7 +107,7 @@ module Decoder(
                 ImmSrc = 2'b10;
                 RegW = 0;
                 RegSrc = 2'bX1;
-                ALUOp = 0;                
+                ALUOp = 2'b00;                
             end
             default: begin
                             MemtoReg = 1'bX;
@@ -116,17 +116,17 @@ module Decoder(
                             ImmSrc = 2'bXX;
                             RegW = 1'bX;
                             RegSrc = 2'bXX;
-                            ALUOp = 1'bX;                
+                            ALUOp = 2'bXX;                
                      end        
         endcase
         
         case(ALUOp)
-            1'b0: begin
+            2'b00: begin
                 ALUControl = 2'b00;
                 FlagW = 2'b00;
                 NoWrite = 0;
             end
-            1'b1: begin
+            2'b10: begin
                 case(Funct[4:0])
                     5'b01000: begin
                                     ALUControl = 2'b00;
@@ -173,11 +173,30 @@ module Decoder(
                                     FlagW = 2'b11;
                                     NoWrite = 1;
                               end
+                    5'b10111: begin
+                                    ALUControl = 2'b00;
+                                    FlagW = 2'b11;
+                                    NoWrite = 1;
+                              end
                     default:  begin
                                     ALUControl = 2'bXX;
                                     FlagW = 2'bXX;
                                     NoWrite = 1'bX;
                               end
+                endcase
+            end
+            2'b01: begin
+                case(Funct[3])
+                    0: begin
+                        ALUControl = 2'b01;
+                        FlagW = 2'b00;
+                        NoWrite = 0;
+                       end
+                    1: begin
+                        ALUControl = 2'b00;
+                        FlagW = 2'b00;
+                        NoWrite = 0;
+                       end
                 endcase
             end
             default:begin
