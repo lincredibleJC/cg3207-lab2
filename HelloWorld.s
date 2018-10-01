@@ -80,7 +80,15 @@ DONE_PRINT_S
 		ADD R15, R14, #0 ; return from the subroutine
 		LDR R1, [R9], #0x01
 		STR R1, [R10], #0x02
-		
+		AND R2, R1, R9
+		OR R2, R1, #0x03
+		SUB R2, R1, R10
+		CMN R2, R1
+		LDR R1, [R9], #-1
+		STR R1, [R10], #-1
+		ADD R2, R1, R9, ROR #0x01
+		OR R3, R4, R5, ASR #0x02
+		AND R2, R3, R5, LSL #0x04
 		
 halt	
 		B    halt           ; infinite loop to halt computation. // A program should not "terminate" without an operating system to return control to
