@@ -78,6 +78,10 @@ NEXTCHAR
 		B PRINT_S
 DONE_PRINT_S
 		ADD R15, R14, #0 ; return from the subroutine
+		LDR R1, [R9], #0x01
+		STR R1, [R10], #0x02
+		
+		
 halt	
 		B    halt           ; infinite loop to halt computation. // A program should not "terminate" without an operating system to return control to
 							; keep halt	B halt as the last line of your code.
