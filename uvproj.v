@@ -1,0 +1,98 @@
+
+//----------------------------------------------------------------
+// Instruction Memory
+//----------------------------------------------------------------
+initial begin
+			INSTR_MEM[0] = 32'hE59F6214; 
+			INSTR_MEM[1] = 32'hE59F7214; 
+			INSTR_MEM[2] = 32'hE59F8204; 
+			INSTR_MEM[3] = 32'hE59F91FC; 
+			INSTR_MEM[4] = 32'hE59FA1F4; 
+			INSTR_MEM[5] = 32'hE59FB1FC; 
+			INSTR_MEM[6] = 32'hE59FC1E0; 
+			INSTR_MEM[7] = 32'hE5993000; 
+			INSTR_MEM[8] = 32'hE3530000; 
+			INSTR_MEM[9] = 32'h0AFFFFFC; 
+			INSTR_MEM[10] = 32'hE59A3000; 
+			INSTR_MEM[11] = 32'hE5984000; 
+			INSTR_MEM[12] = 32'hE3540000; 
+			INSTR_MEM[13] = 32'h0AFFFFFC; 
+			INSTR_MEM[14] = 32'hE58A3000; 
+			INSTR_MEM[15] = 32'hE58B3000; 
+			INSTR_MEM[16] = 32'hE3530041; 
+			INSTR_MEM[17] = 32'h1AFFFFF4; 
+			INSTR_MEM[18] = 32'hE5993000; 
+			INSTR_MEM[19] = 32'hE3530000; 
+			INSTR_MEM[20] = 32'h0AFFFFFC; 
+			INSTR_MEM[21] = 32'hE59A3000; 
+			INSTR_MEM[22] = 32'hE5984000; 
+			INSTR_MEM[23] = 32'hE3540000; 
+			INSTR_MEM[24] = 32'h0AFFFFFC; 
+			INSTR_MEM[25] = 32'hE58A3000; 
+			INSTR_MEM[26] = 32'hE58B3000; 
+			INSTR_MEM[27] = 32'hE3530041; 
+			INSTR_MEM[28] = 32'h0AFFFFF4; 
+			INSTR_MEM[29] = 32'hE353000D; 
+			INSTR_MEM[30] = 32'hE59F01C8; 
+			INSTR_MEM[31] = 32'hE28FE000; 
+			INSTR_MEM[32] = 32'h0A000000; 
+			INSTR_MEM[33] = 32'hEAFFFFE4; 
+			INSTR_MEM[34] = 32'hE5901000; 
+			INSTR_MEM[35] = 32'hE2863004; 
+			INSTR_MEM[36] = 32'hE5984000; 
+			INSTR_MEM[37] = 32'hE3540000; 
+			INSTR_MEM[38] = 32'h0AFFFFFC; 
+			INSTR_MEM[39] = 32'hE0112007; 
+			INSTR_MEM[40] = 32'h0A000005; 
+			INSTR_MEM[41] = 32'hE58A1000; 
+			INSTR_MEM[42] = 32'hE0861421; 
+			INSTR_MEM[43] = 32'hE2533001; 
+			INSTR_MEM[44] = 32'h1AFFFFF6; 
+			INSTR_MEM[45] = 32'hE2800004; 
+			INSTR_MEM[46] = 32'hEAFFFFF2; 
+			INSTR_MEM[47] = 32'hE28EF000; 
+			INSTR_MEM[48] = 32'hE4991001; 
+			INSTR_MEM[49] = 32'hE48A1002; 
+			INSTR_MEM[50] = 32'hE0012009; 
+			INSTR_MEM[51] = 32'hE3812003; 
+			INSTR_MEM[52] = 32'hE041200A; 
+			INSTR_MEM[53] = 32'hE1720001; 
+			INSTR_MEM[54] = 32'hE4191001; 
+			INSTR_MEM[55] = 32'hE40A1001; 
+			INSTR_MEM[56] = 32'hE08120E9; 
+			INSTR_MEM[57] = 32'hE1843145; 
+			INSTR_MEM[58] = 32'hE0032205; 
+			INSTR_MEM[59] = 32'hEAFFFFFE; 
+			for(i = 60; i < 128; i = i+1) begin 
+				INSTR_MEM[i] = 32'h0; 
+			end
+end
+
+//----------------------------------------------------------------
+// Data (Constant) Memory
+//----------------------------------------------------------------
+initial begin
+			DATA_CONST_MEM[0] = 32'h00000C00; 
+			DATA_CONST_MEM[1] = 32'h00000C04; 
+			DATA_CONST_MEM[2] = 32'h00000C08; 
+			DATA_CONST_MEM[3] = 32'h00000C0C; 
+			DATA_CONST_MEM[4] = 32'h00000C10; 
+			DATA_CONST_MEM[5] = 32'h00000C14; 
+			DATA_CONST_MEM[6] = 32'h00000C18; 
+			DATA_CONST_MEM[7] = 32'h00000000; 
+			DATA_CONST_MEM[8] = 32'h000000FF; 
+			DATA_CONST_MEM[9] = 32'h00000002; 
+			DATA_CONST_MEM[10] = 32'h00000800; 
+			DATA_CONST_MEM[11] = 32'hABCD1234; 
+			DATA_CONST_MEM[12] = 32'h65570A0D; 
+			DATA_CONST_MEM[13] = 32'h6D6F636C; 
+			DATA_CONST_MEM[14] = 32'h6F742065; 
+			DATA_CONST_MEM[15] = 32'h33474320; 
+			DATA_CONST_MEM[16] = 32'h2E373032; 
+			DATA_CONST_MEM[17] = 32'h000A0D2E; 
+			DATA_CONST_MEM[18] = 32'h00000230; 
+			for(i = 19; i < 128; i = i+1) begin 
+				DATA_CONST_MEM[i] = 32'h0; 
+			end
+end
+

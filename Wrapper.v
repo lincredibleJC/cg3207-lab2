@@ -138,8 +138,19 @@ initial begin
 			INSTR_MEM[45] = 32'hE2800004; 
 			INSTR_MEM[46] = 32'hEAFFFFF2; 
 			INSTR_MEM[47] = 32'hE28EF000; 
-			INSTR_MEM[48] = 32'hEAFFFFFE; 
-			for(i = 49; i < 128; i = i+1) begin 
+			INSTR_MEM[48] = 32'hE4991001; 
+			INSTR_MEM[49] = 32'hE48A1002; 
+			INSTR_MEM[50] = 32'hE0012009; 
+			INSTR_MEM[51] = 32'hE3812003; 
+			INSTR_MEM[52] = 32'hE041200A; 
+			INSTR_MEM[53] = 32'hE1720001; 
+			INSTR_MEM[54] = 32'hE4191001; 
+			INSTR_MEM[55] = 32'hE40A1001; 
+			INSTR_MEM[56] = 32'hE08120E9; 
+			INSTR_MEM[57] = 32'hE1843145; 
+			INSTR_MEM[58] = 32'hE0032205; 
+			INSTR_MEM[59] = 32'hEAFFFFFE; 
+			for(i = 60; i < 128; i = i+1) begin 
 				INSTR_MEM[i] = 32'h0; 
 			end
 end
@@ -169,7 +180,7 @@ initial begin
 			DATA_CONST_MEM[17] = 32'h000A0D2E; 
 			DATA_CONST_MEM[18] = 32'h00000230; 
 			for(i = 19; i < 128; i = i+1) begin 
-				DATA_CONST_MEM[i] = 32'h0;
+				DATA_CONST_MEM[i] = 32'h0; 
 			end
 end
 
