@@ -2,114 +2,21 @@
 # Vivado v2016.2 (64-bit)
 # SW Build 1577090 on Thu Jun  2 16:32:40 MDT 2016
 # IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
-# Start of session at: Mon Oct 01 21:05:05 2018
-# Process ID: 3340
+# Start of session at: Tue Oct 02 21:51:32 2018
+# Process ID: 464
 # Current directory: C:/Users/Yingchen/Documents/GitHub/cg3207-lab2
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent10692 C:\Users\Yingchen\Documents\GitHub\cg3207-lab2\project_2.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent14532 C:\Users\Yingchen\Documents\GitHub\cg3207-lab2\project_2.xpr
 # Log file: C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/vivado.log
 # Journal file: C:/Users/Yingchen/Documents/GitHub/cg3207-lab2\vivado.jou
-#-----------------------------------------------------------start_gui
+#-----------------------------------------------------------
+start_gui
 open_project C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/project_2.xpr
-IINFO: [Project 1-313] Project file moved from 'C:/Users/willxujun/Desktop/cg3207/lab2' since last save.
 Scanning sources...
 Finished scanning sources
-WARNING: [Project 1-509] GeneratedRun file for 'synth_1' not foundIINFO: [IP_Flow 19-234] Refreshing IP repositories
-INFO: [IP_Flow 19-1704] No user IP repositories specifiedINFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Vivado/Vivado/2016.2/data/ip'.
-oopen_project: Time (s): cpu = 00:00:21 ; elapsed = 00:00:18 . Memory (MB): peak = 736.230 ; gain = 134.102uupdate_compile_order -fileset sources_1launch_simulation
-INFO: [USF-XSim-27] Simulation object is 'sim_1'
-INFO: [USF-XSim-37] Inspecting design source files for 'test_Wrapper' in fileset 'sim_1'...
-INFO: [USF-XSim-97] Finding global include files...
-INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
-INFO: [USF-XSim-2] XSim::Compile design
-INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/project_2.sim/sim_1/behav'
-"xvlog -m64 --relax -prj test_Wrapper_vlog.prj"
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/Shifter.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module Shifter
-INFO: [VRFC 10-311] analyzing module shiftByNPowerOf2
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/RegFile.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module RegFile
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/Decoder.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module Decoder
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/ProgramCounter.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module ProgramCounter
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/CondLogic.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module CondLogic
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/Extend.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module Extend
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/ALU.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module ALU
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/ARM.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module ARM
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/Wrapper.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module Wrapper
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/test_Wrapper.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module test_Wrapper
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/project_2.sim/sim_1/behav/glbl.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module glbl
-INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
-INFO: [USF-XSim-3] XSim::Elaborate design
-INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/project_2.sim/sim_1/behav'
-Vivado Simulator 2016.2
-Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
-Running: D:/Vivado/Vivado/2016.2/bin/unwrapped/win64.o/xelab.exe -wto 42243520492a43609fe5990344357198 --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot test_Wrapper_behav xil_defaultlib.test_Wrapper xil_defaultlib.glbl -log elaborate.log 
-Using 2 slave threads.
-Starting static elaboration
-Completed static elaboration
-Starting simulation data flow analysis
-Completed simulation data flow analysis
-Time Resolution for simulation is 1ps
-Compiling module xil_defaultlib.RegFile
-Compiling module xil_defaultlib.Extend
-Compiling module xil_defaultlib.Decoder
-Compiling module xil_defaultlib.CondLogic
-Compiling module xil_defaultlib.shiftByNPowerOf2
-Compiling module xil_defaultlib.shiftByNPowerOf2(i=1)
-Compiling module xil_defaultlib.shiftByNPowerOf2(i=2)
-Compiling module xil_defaultlib.shiftByNPowerOf2(i=3)
-Compiling module xil_defaultlib.shiftByNPowerOf2(i=4)
-Compiling module xil_defaultlib.Shifter
-Compiling module xil_defaultlib.ALU
-Compiling module xil_defaultlib.ProgramCounter
-Compiling module xil_defaultlib.ARM
-Compiling module xil_defaultlib.Wrapper
-Compiling module xil_defaultlib.test_Wrapper
-Compiling module xil_defaultlib.glbl
-Built simulation snapshot test_Wrapper_behav
-
-****** Webtalk v2016.2 (64-bit)
-  **** SW Build 1577090 on Thu Jun  2 16:32:40 MDT 2016
-  **** IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
-    ** Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
-
-source C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/project_2.sim/sim_1/behav/xsim.dir/test_Wrapper_behav/webtalk/xsim_webtalk.tcl -notrace
-INFO: [Common 17-206] Exiting Webtalk at Mon Oct 01 21:06:04 2018...
-INFO: [USF-XSim-69] 'elaborate' step finished in '4' seconds
-INFO: [USF-XSim-4] XSim::Simulate design
-INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/project_2.sim/sim_1/behav'
-INFO: [USF-XSim-98] *** Running xsim
-   with args "test_Wrapper_behav -key {Behavioral:sim_1:Functional:test_Wrapper} -tclbatch {test_Wrapper.tcl} -log {simulate.log}"
-INFO: [USF-XSim-8] Loading simulator feature
-Vivado Simulator 2016.2
-Time resolution is 1 ps
-source test_Wrapper.tcl
-# set curr_wave [current_wave_config]
-# if { [string length $curr_wave] == 0 } {
-#   if { [llength [get_objects]] > 0} {
-#     add_wave /
-#     set_property needs_save false [current_wave_config]
-#   } else {
-#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
-#   }
-# }
-# run 1000ns
-INFO: [USF-XSim-96] XSim completed. Design snapshot 'test_Wrapper_behav' loaded.
-INFO: [USF-XSim-97] XSim simulation ran for 1000ns
-launch_simulation: Time (s): cpu = 00:00:04 ; elapsed = 00:00:09 . Memory (MB): peak = 737.266 ; gain = 6.934
-run 100 s
-run: Time (s): cpu = 00:00:20 ; elapsed = 00:00:55 . Memory (MB): peak = 747.031 ; gain = 8.293
-close_sim
-INFO: [Simtcl 6-16] Simulation closed
-set_property top Wrapper [current_fileset]
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Vivado/Vivado/2016.2/data/ip'.
+open_project: Time (s): cpu = 00:00:11 ; elapsed = 00:00:07 . Memory (MB): peak = 724.086 ; gain = 84.527
 update_compile_order -fileset sources_1
 launch_simulation
 INFO: [USF-XSim-27] Simulation object is 'sim_1'
@@ -178,15 +85,16 @@ Built simulation snapshot test_Wrapper_behav
     ** Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 
 source C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/project_2.sim/sim_1/behav/xsim.dir/test_Wrapper_behav/webtalk/xsim_webtalk.tcl -notrace
-INFO: [Common 17-206] Exiting Webtalk at Mon Oct 01 21:07:42 2018...
-INFO: [USF-XSim-69] 'elaborate' step finished in '3' seconds
+INFO: [Common 17-206] Exiting Webtalk at Tue Oct 02 21:52:13 2018...
+INFO: [USF-XSim-69] 'elaborate' step finished in '5' seconds
 INFO: [USF-XSim-4] XSim::Simulate design
 INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/project_2.sim/sim_1/behav'
 INFO: [USF-XSim-98] *** Running xsim
-   with args "test_Wrapper_behav -key {Behavioral:sim_1:Functional:test_Wrapper} -tclbatch {test_Wrapper.tcl} -log {simulate.log}"
+   with args "test_Wrapper_behav -key {Behavioral:sim_1:Functional:test_Wrapper} -tclbatch {test_Wrapper.tcl} -view {C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/test_Wrapper_behav.wcfg} -log {simulate.log}"
 INFO: [USF-XSim-8] Loading simulator feature
 Vivado Simulator 2016.2
 Time resolution is 1 ps
+open_wave_config C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/test_Wrapper_behav.wcfg
 source test_Wrapper.tcl
 # set curr_wave [current_wave_config]
 # if { [string length $curr_wave] == 0 } {
@@ -200,13 +108,11 @@ source test_Wrapper.tcl
 # run 1000ns
 INFO: [USF-XSim-96] XSim completed. Design snapshot 'test_Wrapper_behav' loaded.
 INFO: [USF-XSim-97] XSim simulation ran for 1000ns
-launch_simulation: Time (s): cpu = 00:00:02 ; elapsed = 00:00:07 . Memory (MB): peak = 747.031 ; gain = 0.000
-run 100 s
-run: Time (s): cpu = 00:00:55 ; elapsed = 00:04:56 . Memory (MB): peak = 771.746 ; gain = 24.715
-save_wave_config {C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/test_Wrapper_behav.wcfg}
-add_files -fileset sim_1 -norecurse C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/test_Wrapper_behav.wcfg
-set_property xsim.view C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/test_Wrapper_behav.wcfg [get_filesets sim_1]
+launch_simulation: Time (s): cpu = 00:00:05 ; elapsed = 00:00:09 . Memory (MB): peak = 738.418 ; gain = 0.000
+run 100 ns
+run 100 ns
+run 100 us
 close_sim
 INFO: [Simtcl 6-16] Simulation closed
 exit
-INFO: [Common 17-206] Exiting Vivado at Mon Oct 01 21:15:56 2018...
+INFO: [Common 17-206] Exiting Vivado at Tue Oct 02 21:53:39 2018...

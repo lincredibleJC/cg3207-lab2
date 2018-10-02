@@ -3,7 +3,7 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Mon Oct 01 21:15:38 2018">
+<application name="pa" timeStamp="Tue Oct 02 21:53:32 2018">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="78e2934a9b6d46a88ca6d5ef9548a4b3" type="ProjectID"/>
 <property name="ProjectIteration" value="1" type="ProjectIteration"/>
@@ -19,62 +19,26 @@ This means code written to parse this file will need to be revisited each subseq
 <item name="Java Command Handlers">
 <property name="SetTopNode" value="1" type="JavaHandler"/>
 <property name="SimulationBreak" value="2" type="JavaHandler"/>
-<property name="SimulationRun" value="2" type="JavaHandler"/>
-<property name="SimulationRunForTime" value="2" type="JavaHandler"/>
+<property name="SimulationRun" value="3" type="JavaHandler"/>
+<property name="SimulationRunForTime" value="5" type="JavaHandler"/>
 <property name="WaveformSaveConfiguration" value="1" type="JavaHandler"/>
 </item>
 <item name="Gui Resources Info">
-<property name="PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, Hierarchy Update" value="1" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_SET_AS_TOP, Set as Top" value="1" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_SIMULATION_LIVE_BREAK, simulation_live_break" value="2" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_SIMULATION_LIVE_RUN, simulation_live_run_for_time" value="2" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, Run Behavioral Simulation" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, TOP - arch_TOP (TOP.vhd" value="4" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, TOP - arch_TOP (TOP.vhd" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, test_Wrapper (test_Wrapper.v" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1], 6" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources], 5" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Project Manager], 0, true" value="7" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Project Manager], 0, true, false, false, false, false, true" value="2" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_SIMULATION_LIVE_RUN, simulation_live_run_for_time" value="3" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, Run Behavioral Simulation" value="1" type="GuiResourceData"/>
 <property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Run Simulation], 11, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Run Simulation], 7, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Vivado Commands, open_project C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/project_2.xpr. , [Project 1-509] GeneratedRun file for 'synth_1' not found. ], 3, false" value="3" type="GuiResourceData"/>
-<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Vivado Commands, open_project C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/project_2.xpr. , [Project 1-509] GeneratedRun file for 'synth_1' not found. ], 3, false, false, false, false, false, true" value="2" type="GuiResourceData"/>
-<property name="PAResourceQtoS.SrcMenu_IP_HIERARCHY, IP Hierarchy" value="1" type="GuiResourceData"/>
-<property name="PAResourceTtoZ.TaskBanner_CLOSE, (String" value="1" type="GuiResourceData"/>
-<property name="RDIResource.BaseDialog_OK, OK" value="1" type="GuiResourceData"/>
-<property name="RDIResource.BaseDialog_YES, Yes" value="1" type="GuiResourceData"/>
-<property name="RDIResource.GraphicalView_ZOOM_IN, Waveform Viewer_zoom_in" value="19" type="GuiResourceData"/>
-<property name="RDIResource.GraphicalView_ZOOM_OUT, Waveform Viewer_zoom_out" value="36" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 11, 226" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 138, 246" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 138, 77" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 15, 203" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 203, 71" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 27, 227" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 27, 299" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 312, 79" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 33, 311" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 34, 223" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 38, 225" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 426, 73" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 49, 221" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 525, 131" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 528, 66" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 552, 110" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 592, 67" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 61, 221" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 62, 216" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 657, 68" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 682, 71" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 7, 219" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 90, 222" value="1" type="GuiResourceData"/>
-<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, CONSOLE_IN[7:0]], 8, true" value="3" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SimulationLiveRunForComp_SPECIFY_TIME_AND_UNITS, ns, 3" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SimulationLiveRunForComp_SPECIFY_TIME_AND_UNITS, us, 2" value="1" type="GuiResourceData"/>
+<property name="RDIResource.GraphicalView_ZOOM_IN, Waveform Viewer_zoom_in" value="5" type="GuiResourceData"/>
+<property name="RDIResource.GraphicalView_ZOOM_OUT, Waveform Viewer_zoom_out" value="2" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 328, 165" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 633, 150" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 681, 128" value="1" type="GuiResourceData"/>
 </item>
 <item name="Other">
-<property name="GuiMode" value="50" type="GuiMode"/>
+<property name="GuiMode" value="51" type="GuiMode"/>
 <property name="BatchMode" value="0" type="BatchMode"/>
-<property name="TclMode" value="39" type="TclMode"/>
+<property name="TclMode" value="40" type="TclMode"/>
 </item>
 </section>
 </application>

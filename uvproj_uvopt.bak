@@ -143,7 +143,7 @@
         <aSer4>0</aSer4>
         <StkLoc>0</StkLoc>
         <TrcWin>0</TrcWin>
-        <newCpu>0</newCpu>
+        <newCpu>3</newCpu>
         <uProt>0</uProt>
       </DebugFlag>
       <Tracepoint>
@@ -166,9 +166,9 @@
       <FileType>2</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>17</ColumnNumber>
+      <ColumnNumber>11</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>6</TopLine>
+      <TopLine>79</TopLine>
       <CurrentLine>90</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\HelloWorld.s</PathWithFileName>
