@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="test_Wrapper_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="test_Wrapper" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="2410000001fs"></ZoomEndTime>
+      <Cursor1Time time="0fs"></Cursor1Time>
+   </zoom_setting>
+   <WVObjectSize size="16" />
+   <wvobject fp_name="/test_Wrapper/DIP" type="array">
+      <obj_property name="ElementShortName">DIP[15:0]</obj_property>
+      <obj_property name="ObjectShortName">DIP[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_Wrapper/PB" type="array">
+      <obj_property name="ElementShortName">PB[3:0]</obj_property>
+      <obj_property name="ObjectShortName">PB[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_Wrapper/LED_OUT" type="array">
+      <obj_property name="ElementShortName">LED_OUT[7:0]</obj_property>
+      <obj_property name="ObjectShortName">LED_OUT[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_Wrapper/LED_PC" type="array">
+      <obj_property name="ElementShortName">LED_PC[6:0]</obj_property>
+      <obj_property name="ObjectShortName">LED_PC[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_Wrapper/SEVENSEGHEX" type="array">
+      <obj_property name="ElementShortName">SEVENSEGHEX[31:0]</obj_property>
+      <obj_property name="ObjectShortName">SEVENSEGHEX[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_Wrapper/CONSOLE_OUT" type="array">
+      <obj_property name="ElementShortName">CONSOLE_OUT[7:0]</obj_property>
+      <obj_property name="ObjectShortName">CONSOLE_OUT[7:0]</obj_property>
+      <obj_property name="Radix">ASCIIRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_Wrapper/CONSOLE_OUT_ready" type="logic">
+      <obj_property name="ElementShortName">CONSOLE_OUT_ready</obj_property>
+      <obj_property name="ObjectShortName">CONSOLE_OUT_ready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_Wrapper/CONSOLE_OUT_valid" type="logic">
+      <obj_property name="ElementShortName">CONSOLE_OUT_valid</obj_property>
+      <obj_property name="ObjectShortName">CONSOLE_OUT_valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_Wrapper/CONSOLE_IN" type="array">
+      <obj_property name="ElementShortName">CONSOLE_IN[7:0]</obj_property>
+      <obj_property name="ObjectShortName">CONSOLE_IN[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_Wrapper/CONSOLE_IN_valid" type="logic">
+      <obj_property name="ElementShortName">CONSOLE_IN_valid</obj_property>
+      <obj_property name="ObjectShortName">CONSOLE_IN_valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_Wrapper/CONSOLE_IN_ack" type="logic">
+      <obj_property name="ElementShortName">CONSOLE_IN_ack</obj_property>
+      <obj_property name="ObjectShortName">CONSOLE_IN_ack</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_Wrapper/RESET" type="logic">
+      <obj_property name="ElementShortName">RESET</obj_property>
+      <obj_property name="ObjectShortName">RESET</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_Wrapper/CLK_undiv" type="logic">
+      <obj_property name="ElementShortName">CLK_undiv</obj_property>
+      <obj_property name="ObjectShortName">CLK_undiv</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_Wrapper/N_LEDs_OUT" type="array">
+      <obj_property name="ElementShortName">N_LEDs_OUT[31:0]</obj_property>
+      <obj_property name="ObjectShortName">N_LEDs_OUT[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_Wrapper/N_DIPs" type="array">
+      <obj_property name="ElementShortName">N_DIPs[31:0]</obj_property>
+      <obj_property name="ObjectShortName">N_DIPs[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_Wrapper/N_PBs" type="array">
+      <obj_property name="ElementShortName">N_PBs[31:0]</obj_property>
+      <obj_property name="ObjectShortName">N_PBs[31:0]</obj_property>
+   </wvobject>
+</wave_config>

@@ -24,11 +24,19 @@
 		LDR R10, CONSOLE		; UART
 		LDR R11, SEVENSEG
 		LDR R12, LEDS
+		
+		LDR R1, [R10], #0x01 ; Basic: Load with offset
+		STR R1, [R11], #0x20 ; Basic: Store with offset
 WAIT_A	
 		LDR R3, [R9]	; read the new character flag
 		CMP R3, #0 		; check if there is a new character
 		BEQ	WAIT_A		; go back and wait if there is no new character
 		LDR R3, [R10]	; read UART (first character. 'A' - 0x41 expected)
+		
+		AND R2, R1, R9 ; Basic: DP with register 
+		ORR R2, R1, #0x03 ; Basic: DP with offset
+		SUB R2, R1, R10 ; Basic: DP with register
+		
 ECHO_A
 		LDR R4, [R8]
 		CMP R4, #0
@@ -37,11 +45,21 @@ ECHO_A
 		STR R3, [R11]	; show received character (ASCII) on the 7-Seg display
 		CMP R3, #'A'
 		BNE WAIT_A		; not 'A'. Continue waiting
+		
+		CMN R2, R1	; Improvement: CMN
+		LDR R1, [R9], #-1	; Improvement: Load with negative offset
+		STR R6, [R11], #-0x14	; Improvement: Store with negative offset
+		
 WAIT_CR					; 'A' received. Need to wait for '\r' (Carriage Return - CR).
 		LDR R3, [R9]	; read the new character flag
 		CMP R3, #0 		; check if there is a new character
 		BEQ	WAIT_CR		; go back and wait if there is no new character
 		LDR R3, [R10] 	; read UART (second character. '\r' expected)
+		
+		ADD R2, R1, R9, ROR #0x01	; Improvement: DP with immediate-shifted register
+		ORR R2, R4, R5, ASR #0x02	; Improvement: DP with immediate-shifted register
+		AND R2, R3, R5, LSL #0x04	; Improvement: DP with immediate-shifted register
+		
 ECHO_CR
 		LDR R4, [R8]
 		CMP R4, #0
@@ -78,6 +96,7 @@ NEXTCHAR
 		B PRINT_S
 DONE_PRINT_S
 		ADD R15, R14, #0 ; return from the subroutine
+
 halt	
 		B    halt           ; infinite loop to halt computation. // A program should not "terminate" without an operating system to return control to
 							; keep halt	B halt as the last line of your code.
