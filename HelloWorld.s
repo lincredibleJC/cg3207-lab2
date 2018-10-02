@@ -34,7 +34,7 @@ WAIT_A
 		LDR R3, [R10]	; read UART (first character. 'A' - 0x41 expected)
 		
 		AND R2, R1, R9 ; Basic: DP with register 
-		ORR R2, R1, #0x03 ; Basic: DP with offset
+		ORR R1, R2, #0x03 ; Basic: DP with offset
 		SUB R2, R1, R10 ; Basic: DP with register
 		
 ECHO_A
@@ -57,7 +57,7 @@ WAIT_CR					; 'A' received. Need to wait for '\r' (Carriage Return - CR).
 		LDR R3, [R10] 	; read UART (second character. '\r' expected)
 		
 		ADD R2, R1, R9, ROR #0x01	; Improvement: DP with immediate-shifted register
-		ORR R2, R4, R5, ASR #0x02	; Improvement: DP with immediate-shifted register
+		ORR R1, R2, R5, ASR #0x02	; Improvement: DP with immediate-shifted register
 		AND R2, R3, R5, LSL #0x04	; Improvement: DP with immediate-shifted register
 		
 ECHO_CR
