@@ -34,7 +34,7 @@ WAIT_A
 		
 ECHO_A
 		LDR R4, [R8]
-		AND R2, R4, #0x01 ; R2 = R4 | Basic: DP with immediate
+		AND R2, R4, #0xFF ; R2 = R4 | Basic: DP with immediate
 		CMP R2, #0
 		BEQ ECHO_A
 		STR R3, [R12, #0x0C]	; echo received character to the console | Basic: Store with positive immediate
@@ -48,17 +48,15 @@ WAIT_CR					; 'A' received. Need to wait for '\r' (Carriage Return - CR).
 		BEQ	WAIT_CR		; go back and wait if there is no new character
 		LDR R3, [R10] 	; read UART (second character. '\r' expected)
 		
-		ADD R2, R1, R9, ROR #0x01	; Improvement: DP with immediate-shifted register
-		ORR R1, R2, R5, ASR #0x02	; Improvement: DP with immediate-shifted register
-		AND R2, R3, R5, LSL #0x04	; Improvement: DP with immediate-shifted register
-		
 ECHO_CR
 		LDR R4, [R8]
-		CMP R4, #0
+		ORR R2, R4, R6, ROR #0x01	; R2 = R4 | Improvement: DP with immediate-shifted register
+		CMP R2, #0
 		BEQ ECHO_CR
 		STR R3, [R9, #-4]	; echo received character to the console | Improvement: Store with negative offset
 		STR R3, [R11]	; show received character (ASCII) on the 7-Seg display
-		CMP R3, #'A'	; perhaps the user is trying again before completing the pervious attempt, or 'A' was repeated. Just a '\r' needed as we already got an 'A'
+		SUB R2, R3, R6, LSL #0x04	; Improvement: DP with immediate-shifted register
+		CMP R2, #'A'	; perhaps the user is trying again before completing the pervious attempt, or 'A' was repeated. Just a '\r' needed as we already got an 'A'
 		BEQ WAIT_CR		; wait for '\r' 
 		CMP R3, #'\r'	; Check if the second character is '\r'
 		LDR R0, stringptr	; R0 stores the value to be displayed. This is the argument passed to PRINT_S
@@ -75,7 +73,8 @@ PRINT_S
 		ADD R3, R6, #4	; byte counter
 NEXTCHAR
 		LDR R4, [R8]	; check if CONSOLE is ready to send a new character
-		CMP R4, #0
+		ADD R2, R4, R6, ASR #0x02	; Improvement: DP with immediate-shifted register
+		CMP R2, #0
 		BEQ NEXTCHAR	; not ready, continue waiting
 		ANDS R2, R1, R7 ; apply LSB_MASK
 		BEQ DONE_PRINT_S ; null terminator ('\0') detected
