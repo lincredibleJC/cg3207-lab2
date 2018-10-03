@@ -10,7 +10,7 @@
 ### ADS-LD Output File: 'uvproj.axf'
 ### ADS-LD Command File: 'uvproj.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile 'uvproj.lnp', Handle=0x00000614
+### Creating CmdFile 'uvproj.lnp', Handle=0x000005F8
 ### Writing '.lnp' file
 ### ADS-LD Command file 'uvproj.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.
