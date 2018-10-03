@@ -90,7 +90,7 @@ integer i;
 // Instruction Memory
 //----------------------------------------------------------------
 initial begin
-			INSTR_MEM[0] = 32'hE59F6214; 
+						INSTR_MEM[0] = 32'hE59F6214; 
 			INSTR_MEM[1] = 32'hE59F7214; 
 			INSTR_MEM[2] = 32'hE59F8204; 
 			INSTR_MEM[3] = 32'hE59F91FC; 
@@ -108,7 +108,7 @@ initial begin
 			INSTR_MEM[15] = 32'h0AFFFFFB; 
 			INSTR_MEM[16] = 32'hE58C300C; 
 			INSTR_MEM[17] = 32'hE58B3000; 
-			INSTR_MEM[18] = 32'hE3730041; 
+			INSTR_MEM[18] = 32'hE3530041; 
 			INSTR_MEM[19] = 32'h1AFFFFF2; 
 			INSTR_MEM[20] = 32'hE5183004; 
 			INSTR_MEM[21] = 32'hE3530000; 

@@ -96,7 +96,7 @@ ARM Macro Assembler    Page 2
    41 00000044 E58B3000        STR              R3, [R11]   ; show received cha
                                                             racter (ASCII) on t
                                                             he 7-Seg display
-   42 00000048 E3730041        CMN              R3, #'A'    ; Improvement: CMN
+   42 00000048 E3530041        CMP              R3, #'A'    ; Improvement: CMN
    43 0000004C 1AFFFFF2        BNE              WAIT_A      ; not 'A'. Continue
                                                              waiting
    44 00000050         

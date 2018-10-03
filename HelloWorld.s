@@ -39,7 +39,7 @@ ECHO_A
 		BEQ ECHO_A
 		STR R3, [R12, #0x0C]	; echo received character to the console | Basic: Store with positive immediate
 		STR R3, [R11]	; show received character (ASCII) on the 7-Seg display
-		CMN R3, #'A'	; Improvement: CMN
+		CMP R3, #'A'	; Improvement: CMN
 		BNE WAIT_A		; not 'A'. Continue waiting
 		
 WAIT_CR					; 'A' received. Need to wait for '\r' (Carriage Return - CR).

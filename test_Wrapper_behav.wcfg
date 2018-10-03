@@ -12,8 +12,8 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="2410000001fs"></ZoomEndTime>
-      <Cursor1Time time="0fs"></Cursor1Time>
+      <ZoomEndTime time="2315000001fs"></ZoomEndTime>
+      <Cursor1Time time="335000000fs"></Cursor1Time>
    </zoom_setting>
    <WVObjectSize size="16" />
    <wvobject fp_name="/test_Wrapper/DIP" type="array">
@@ -35,6 +35,7 @@
    <wvobject fp_name="/test_Wrapper/SEVENSEGHEX" type="array">
       <obj_property name="ElementShortName">SEVENSEGHEX[31:0]</obj_property>
       <obj_property name="ObjectShortName">SEVENSEGHEX[31:0]</obj_property>
+      <obj_property name="Radix">ASCIIRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/test_Wrapper/CONSOLE_OUT" type="array">
       <obj_property name="ElementShortName">CONSOLE_OUT[7:0]</obj_property>
