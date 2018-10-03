@@ -39,15 +39,11 @@ ECHO_A
 		BEQ ECHO_A
 		STR R3, [R12, #0x0C]	; echo received character to the console | Basic: Store with positive immediate
 		STR R3, [R11]	; show received character (ASCII) on the 7-Seg display
-		CMP R3, #'A'
+		CMN R3, #'A'	; Improvement: CMN
 		BNE WAIT_A		; not 'A'. Continue waiting
 		
-		CMN R2, R1	; Improvement: CMN
-		LDR R1, [R9], #-1	; Improvement: Load with negative offset
-		STR R6, [R11], #-0x14	; Improvement: Store with negative offset
-		
 WAIT_CR					; 'A' received. Need to wait for '\r' (Carriage Return - CR).
-		LDR R3, [R9]	; read the new character flag
+		LDR R3, [R8, #-4]	; read the new character flag | Improvement: Load with negative offset
 		CMP R3, #0 		; check if there is a new character
 		BEQ	WAIT_CR		; go back and wait if there is no new character
 		LDR R3, [R10] 	; read UART (second character. '\r' expected)
@@ -60,7 +56,7 @@ ECHO_CR
 		LDR R4, [R8]
 		CMP R4, #0
 		BEQ ECHO_CR
-		STR R3, [R10]	; echo received character to the console
+		STR R3, [R9, #-4]	; echo received character to the console | Improvement: Store with negative offset
 		STR R3, [R11]	; show received character (ASCII) on the 7-Seg display
 		CMP R3, #'A'	; perhaps the user is trying again before completing the pervious attempt, or 'A' was repeated. Just a '\r' needed as we already got an 'A'
 		BEQ WAIT_CR		; wait for '\r' 
