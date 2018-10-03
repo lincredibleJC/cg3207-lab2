@@ -25,23 +25,19 @@
 		LDR R11, SEVENSEG
 		LDR R12, LEDS
 		
-		LDR R1, [R10], #0x01 ; Basic: Load with offset
-		STR R1, [R11], #0x20 ; Basic: Store with offset
 WAIT_A	
-		LDR R3, [R9]	; read the new character flag
-		CMP R3, #0 		; check if there is a new character
+		LDR R3, [R10, #4]	; read the new character flag | Basic: Load with positive immediate
+		ADD R2, R3, R6		; R2 = R3 + 0 | Basic: DP with register 
+		CMP R2, #0 		; check if there is a new character
 		BEQ	WAIT_A		; go back and wait if there is no new character
 		LDR R3, [R10]	; read UART (first character. 'A' - 0x41 expected)
 		
-		AND R2, R1, R9 ; Basic: DP with register 
-		ORR R1, R2, #0x03 ; Basic: DP with offset
-		SUB R2, R1, R10 ; Basic: DP with register
-		
 ECHO_A
 		LDR R4, [R8]
-		CMP R4, #0
+		AND R2, R4, #0x01 ; R2 = R4 | Basic: DP with immediate
+		CMP R2, #0
 		BEQ ECHO_A
-		STR R3, [R10]	; echo received character to the console
+		STR R3, [R12, #0x0C]	; echo received character to the console | Basic: Store with positive immediate
 		STR R3, [R11]	; show received character (ASCII) on the 7-Seg display
 		CMP R3, #'A'
 		BNE WAIT_A		; not 'A'. Continue waiting
