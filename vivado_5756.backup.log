@@ -1,0 +1,82 @@
+#-----------------------------------------------------------
+# Vivado v2016.2 (64-bit)
+# SW Build 1577090 on Thu Jun  2 16:32:40 MDT 2016
+# IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
+# Start of session at: Wed Oct 03 14:49:35 2018
+# Process ID: 5756
+# Current directory: C:/Users/Yingchen/Documents/GitHub/cg3207-lab2
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent5948 C:\Users\Yingchen\Documents\GitHub\cg3207-lab2\project_2.xpr
+# Log file: C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/vivado.log
+# Journal file: C:/Users/Yingchen/Documents/GitHub/cg3207-lab2\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/project_2.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Vivado/Vivado/2016.2/data/ip'.
+open_project: Time (s): cpu = 00:00:11 ; elapsed = 00:00:05 . Memory (MB): peak = 779.227 ; gain = 129.051
+update_compile_order -fileset sources_1
+set_property top TOP [current_fileset]
+update_compile_order -fileset sources_1
+launch_runs impl_1 -to_step write_bitstream
+[Wed Oct 03 14:50:43 2018] Launched synth_1...
+Run output will be captured here: C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/project_2.runs/synth_1/runme.log
+[Wed Oct 03 14:50:43 2018] Launched impl_1...
+Run output will be captured here: C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/project_2.runs/impl_1/runme.log
+add_files -fileset constrs_1 -norecurse C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/TOP.xdc
+import_files -fileset constrs_1 C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/TOP.xdc
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream
+[Wed Oct 03 14:54:55 2018] Launched synth_1...
+Run output will be captured here: C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/project_2.runs/synth_1/runme.log
+[Wed Oct 03 14:54:55 2018] Launched impl_1...
+Run output will be captured here: C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/project_2.runs/impl_1/runme.log
+open_hw
+connect_hw_server
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-2222] Launching hw_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+****** Xilinx hw_server v2016.2
+  **** Build date : Jun  2 2016-16:57:03
+    ** Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+
+
+open_hw_target
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210274533411A
+ERROR: [Labtools 27-2269] No devices detected on target localhost:3121/xilinx_tcf/Digilent/210274533411A.
+Check cable connectivity and that the target board is powered up then
+use the disconnect_hw_server and connect_hw_server to re-register this hardware target.
+ERROR: [Common 17-39] 'open_hw_target' failed due to earlier errors.
+disconnect_hw_server localhost:3121
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+disconnect_hw_server localhost:3121
+connect_hw_server -url localhost:3121
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+current_hw_target [get_hw_targets */xilinx_tcf/Digilent/210274533411A]
+set_property PARAM.FREQUENCY 15000000 [get_hw_targets */xilinx_tcf/Digilent/210274533411A]
+open_hw_target
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210274533411A
+set_property PROGRAM.FILE {C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/project_2.runs/impl_1/TOP.bit} [lindex [get_hw_devices] 0]
+current_hw_device [lindex [get_hw_devices] 0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices] 0]
+INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+WARNING: [Labtools 27-3123] The debug hub core was not detected at User Scan Chain 1 or 3.
+Resolution: 
+1. Make sure the clock connected to the debug hub (dbg_hub) core is a free running clock and is active OR
+2. Manually launch hw_server with -e "set xsdb-user-bscan <C_USER_SCAN_CHAIN scan_chain_number>" to detect the debug hub at User Scan Chain of 2 or 4. To determine the user scan chain setting, open the implemented design and use: get_property C_USER_SCAN_CHAIN [get_debug_cores dbg_hub].
+set_property PROBES.FILE {} [lindex [get_hw_devices] 0]
+set_property PROGRAM.FILE {C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/project_2.runs/impl_1/TOP.bit} [lindex [get_hw_devices] 0]
+program_hw_devices [lindex [get_hw_devices] 0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+refresh_hw_device [lindex [get_hw_devices] 0]
+INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+WARNING: [Labtools 27-3123] The debug hub core was not detected at User Scan Chain 1 or 3.
+Resolution: 
+1. Make sure the clock connected to the debug hub (dbg_hub) core is a free running clock and is active OR
+2. Manually launch hw_server with -e "set xsdb-user-bscan <C_USER_SCAN_CHAIN scan_chain_number>" to detect the debug hub at User Scan Chain of 2 or 4. To determine the user scan chain setting, open the implemented design and use: get_property C_USER_SCAN_CHAIN [get_debug_cores dbg_hub].
+ERROR: [Labtoolstcl 44-513] HW Target shutdown. Closing target: localhost:3121/xilinx_tcf/Digilent/210274533411A
+exit
+INFO: [Common 17-206] Exiting Vivado at Wed Oct 03 15:24:52 2018...

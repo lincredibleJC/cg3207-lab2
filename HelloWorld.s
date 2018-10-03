@@ -70,7 +70,7 @@ ECHO_CR
 ; A stack can be simulated by using R13 as a stack pointer. Loading and storing should be accompanied by manually decrementing/incrementing R13. Only one value can be 'push'ed or 'pop'ed at a time.
 PRINT_S					
 		LDR R1, [R0]	; load the word (4 characters) to be displayed
-		;STR	R1, [R11]	; write to seven segment display
+		STR	R1, [R11]	; write to seven segment display
 		ADD R3, R6, #4	; byte counter
 NEXTCHAR
 		LDR R4, [R8]	; check if CONSOLE is ready to send a new character
@@ -80,7 +80,7 @@ NEXTCHAR
 		ANDS R2, R1, R7 ; apply LSB_MASK
 		BEQ DONE_PRINT_S ; null terminator ('\0') detected
 		STR	R1, [R10]	; write to UART the Byte[4-R3] of the original word (composed of 4 characters) in [7:0] of the word to be written (remember, we can only write words, and LEDs/UART displays only [7:0] of the written word)
-		;STR	R1, [R12]	; write to LEDS
+		STR	R1, [R12]	; write to LEDS
 		ADD R1, R6, R1, LSR #8 ; shift so that the next character comes into LSB
 		SUBS R3, #1
 		BNE NEXTCHAR	; check and print the next character
