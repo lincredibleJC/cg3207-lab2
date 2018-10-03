@@ -39,7 +39,7 @@ ECHO_A
 		BEQ ECHO_A
 		STR R3, [R12, #0x0C]	; echo received character to the console | Basic: Store with positive immediate
 		STR R3, [R11]	; show received character (ASCII) on the 7-Seg display
-		CMP R3, #'A'	; Improvement: CMN
+		CMP R3, #'A'	
 		BNE WAIT_A		; not 'A'. Continue waiting
 		
 WAIT_CR					; 'A' received. Need to wait for '\r' (Carriage Return - CR).
@@ -58,7 +58,8 @@ ECHO_CR
 		SUB R2, R3, R6, LSL #0x04	; Improvement: DP with immediate-shifted register
 		CMP R2, #'A'	; perhaps the user is trying again before completing the pervious attempt, or 'A' was repeated. Just a '\r' needed as we already got an 'A'
 		BEQ WAIT_CR		; wait for '\r' 
-		CMP R3, #'\r'	; Check if the second character is '\r'
+		SUB R2, R6, #'\r'	; Improvement: CMN
+		CMN R3, R2	; Check if the second character is '\r'
 		LDR R0, stringptr	; R0 stores the value to be displayed. This is the argument passed to PRINT_S
 		ADD R14, R15, #0 ; Storing the return value manually since we do not have BL
 		BEQ PRINT_S		; "A\r" received. Call PRINT_S subroutine

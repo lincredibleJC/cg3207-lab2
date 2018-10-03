@@ -96,7 +96,7 @@ ARM Macro Assembler    Page 2
    41 00000044 E58B3000        STR              R3, [R11]   ; show received cha
                                                             racter (ASCII) on t
                                                             he 7-Seg display
-   42 00000048 E3530041        CMP              R3, #'A'    ; Improvement: CMN
+   42 00000048 E3530041        CMP              R3, #'A'
    43 0000004C 1AFFFFF2        BNE              WAIT_A      ; not 'A'. Continue
                                                              waiting
    44 00000050         
@@ -152,59 +152,61 @@ ARM Macro Assembler    Page 3
                                                              as we already got 
                                                             an 'A'
    60 00000080 0AFFFFF2        BEQ              WAIT_CR     ; wait for '\r' 
-   61 00000084 E353000D        CMP              R3, #'\r'   ; Check if the seco
+   61 00000084 E246200D        SUB              R2, R6, #'\r' 
+                                                            ; Improvement: CMN
+   62 00000088 E1730002        CMN              R3, R2      ; Check if the seco
                                                             nd character is '\r
                                                             '
-   62 00000088 E51F0008        LDR              R0, stringptr ; R0 stores the v
+   63 0000008C E51F0008        LDR              R0, stringptr ; R0 stores the v
                                                             alue to be displaye
                                                             d. This is the argu
                                                             ment passed to PRIN
                                                             T_S
-   63 0000008C E28FE000        ADD              R14, R15, #0 ; Storing the retu
+   64 00000090 E28FE000        ADD              R14, R15, #0 ; Storing the retu
                                                             rn value manually s
                                                             ince we do not have
                                                              BL
-   64 00000090 0A000000        BEQ              PRINT_S     ; "A\r" received. C
+   65 00000094 0A000000        BEQ              PRINT_S     ; "A\r" received. C
                                                             all PRINT_S subrout
                                                             ine
-   65 00000094 EAFFFFE0        B                WAIT_A      ; not the correct p
+   66 00000098 EAFFFFDF        B                WAIT_A      ; not the correct p
                                                             attern. try again.
-   66 00000098         
-   67 00000098         ; P the null-terminated string at a location pointed to 
+   67 0000009C         
+   68 0000009C         ; P the null-terminated string at a location pointed to 
                        be R0 onto the console.
-   68 00000098         ; It is a good idea to 'push' the registers used by this
+   69 0000009C         ; It is a good idea to 'push' the registers used by this
                         function to the 'stack'.
-   69 00000098         ; A stack can be simulated by using R13 as a stack point
+   70 0000009C         ; A stack can be simulated by using R13 as a stack point
                        er. Loading and storing should be accompanied by manuall
                        y decrementing/incrementing R13. Only one value can be '
                        push'ed or 'pop'ed at a time.
-   70 00000098         PRINT_S
-   71 00000098 E5901000        LDR              R1, [R0]    ; load the word (4 
+   71 0000009C         PRINT_S
+   72 0000009C E5901000        LDR              R1, [R0]    ; load the word (4 
                                                             characters) to be d
                                                             isplayed
-   72 0000009C         ;STR R1, [R11] ; write to seven segment display
-   73 0000009C E2863004        ADD              R3, R6, #4  ; byte counter
-   74 000000A0         NEXTCHAR
-   75 000000A0 E5984000        LDR              R4, [R8]    ; check if CONSOLE 
+   73 000000A0         ;STR R1, [R11] ; write to seven segment display
+   74 000000A0 E2863004        ADD              R3, R6, #4  ; byte counter
+   75 000000A4         NEXTCHAR
+   76 000000A4 E5984000        LDR              R4, [R8]    ; check if CONSOLE 
                                                             is ready to send a 
                                                             new character
-   76 000000A4 E0842146        ADD              R2, R4, R6, ASR #0x02 ; Improve
+   77 000000A8 E0842146        ADD              R2, R4, R6, ASR #0x02 ; Improve
                                                             ment: DP with immed
                                                             iate-shifted regist
-                                                            er
-   77 000000A8 E3520000        CMP              R2, #0
 
 
 
 ARM Macro Assembler    Page 4 
 
 
-   78 000000AC 0AFFFFFB        BEQ              NEXTCHAR    ; not ready, contin
+                                                            er
+   78 000000AC E3520000        CMP              R2, #0
+   79 000000B0 0AFFFFFB        BEQ              NEXTCHAR    ; not ready, contin
                                                             ue waiting
-   79 000000B0 E0112007        ANDS             R2, R1, R7  ; apply LSB_MASK
-   80 000000B4 0A000005        BEQ              DONE_PRINT_S ; null terminator 
+   80 000000B4 E0112007        ANDS             R2, R1, R7  ; apply LSB_MASK
+   81 000000B8 0A000005        BEQ              DONE_PRINT_S ; null terminator 
                                                             ('\0') detected
-   81 000000B8 E58A1000        STR              R1, [R10]   ; write to UART the
+   82 000000BC E58A1000        STR              R1, [R10]   ; write to UART the
                                                              Byte[4-R3] of the 
                                                             original word (comp
                                                             osed of 4 character
@@ -215,120 +217,120 @@ ARM Macro Assembler    Page 4
                                                             d LEDs/UART display
                                                             s only [7:0] of the
                                                              written word)
-   82 000000BC         ;STR R1, [R12] ; write to LEDS
-   83 000000BC E0861421        ADD              R1, R6, R1, LSR #8 ; shift so t
+   83 000000C0         ;STR R1, [R12] ; write to LEDS
+   84 000000C0 E0861421        ADD              R1, R6, R1, LSR #8 ; shift so t
                                                             hat the next charac
                                                             ter comes into LSB
-   84 000000C0 E2533001        SUBS             R3, #1
-   85 000000C4 1AFFFFF5        BNE              NEXTCHAR    ; check and print t
+   85 000000C4 E2533001        SUBS             R3, #1
+   86 000000C8 1AFFFFF5        BNE              NEXTCHAR    ; check and print t
                                                             he next character
-   86 000000C8 E2800004        ADD              R0, #4      ; point to next wor
+   87 000000CC E2800004        ADD              R0, #4      ; point to next wor
                                                             d (4 characters)
-   87 000000CC EAFFFFF1        B                PRINT_S
-   88 000000D0         DONE_PRINT_S
-   89 000000D0 E28EF000        ADD              R15, R14, #0 ; return from the 
+   88 000000D0 EAFFFFF1        B                PRINT_S
+   89 000000D4         DONE_PRINT_S
+   90 000000D4 E28EF000        ADD              R15, R14, #0 ; return from the 
                                                             subroutine
-   90 000000D4         
-   91 000000D4         halt
-   92 000000D4 EAFFFFFE        B                halt        ; infinite loop to 
+   91 000000D8         
+   92 000000D8         halt
+   93 000000D8 EAFFFFFE        B                halt        ; infinite loop to 
                                                             halt computation. /
                                                             / A program should 
                                                             not "terminate" wit
                                                             hout an operating s
                                                             ystem to return con
                                                             trol to
-   93 000000D8         ; keep halt B halt as the last line of your code.
-   94 000000D8         ; ------- <\code memory (ROM mapped to Instruction Memor
+   94 000000DC         ; keep halt B halt as the last line of your code.
+   95 000000DC         ; ------- <\code memory (ROM mapped to Instruction Memor
                        y) ends>
-   95 000000D8         
-   96 000000D8         
-   97 000000D8                 AREA             CONSTANTS, DATA, READONLY, ALIG
+   96 000000DC         
+   97 000000DC         
+   98 000000DC                 AREA             CONSTANTS, DATA, READONLY, ALIG
 N=9
-   98 00000000         ; ------- <constant memory (ROM mapped to Data Memory) b
+   99 00000000         ; ------- <constant memory (ROM mapped to Data Memory) b
                        egins>
-   99 00000000         ; All constants should be declared in this section. This
+  100 00000000         ; All constants should be declared in this section. This
                         section is read only (Only LDR, no STR).
-  100 00000000         ; Total number of constants should not exceed 128 (124 e
+  101 00000000         ; Total number of constants should not exceed 128 (124 e
                        xcluding the 4 used for peripheral pointers).
-  101 00000000         ; If a variable is accessed multiple times, it is better
+  102 00000000         ; If a variable is accessed multiple times, it is better
                         to store the address in a register and use it rather th
                        an load it repeatedly.
-  102 00000000         
-  103 00000000         ;Peripheral pointers
-  104 00000000         LEDS
-  105 00000000 00000C00        DCD              0x00000C00  ; Address of LEDs. 
-                                                            //volatile unsigned
+  103 00000000         
+  104 00000000         ;Peripheral pointers
+  105 00000000         LEDS
 
 
 
 ARM Macro Assembler    Page 5 
 
 
+  106 00000000 00000C00        DCD              0x00000C00  ; Address of LEDs. 
+                                                            //volatile unsigned
                                                              int * const LEDS =
                                                              (unsigned int*)0x0
                                                             0000C00;  
-  106 00000004         DIPS
-  107 00000004 00000C04        DCD              0x00000C04  ; Address of DIP sw
+  107 00000004         DIPS
+  108 00000004 00000C04        DCD              0x00000C04  ; Address of DIP sw
                                                             itches. //volatile 
                                                             unsigned int * cons
                                                             t DIPS = (unsigned 
                                                             int*)0x00000C04;
-  108 00000008         PBS
-  109 00000008 00000C08        DCD              0x00000C08  ; Address of Push B
+  109 00000008         PBS
+  110 00000008 00000C08        DCD              0x00000C08  ; Address of Push B
                                                             uttons. Used only i
                                                             n Lab 2
-  110 0000000C         CONSOLE
-  111 0000000C 00000C0C        DCD              0x00000C0C  ; Address of UART. 
+  111 0000000C         CONSOLE
+  112 0000000C 00000C0C        DCD              0x00000C0C  ; Address of UART. 
                                                             Used only in Lab 2 
                                                             and later
-  112 00000010         CONSOLE_IN_valid
-  113 00000010 00000C10        DCD              0x00000C10  ; Address of UART. 
+  113 00000010         CONSOLE_IN_valid
+  114 00000010 00000C10        DCD              0x00000C10  ; Address of UART. 
                                                             Used only in Lab 2 
                                                             and later
-  114 00000014         CONSOLE_OUT_ready
-  115 00000014 00000C14        DCD              0x00000C14  ; Address of UART. 
+  115 00000014         CONSOLE_OUT_ready
+  116 00000014 00000C14        DCD              0x00000C14  ; Address of UART. 
                                                             Used only in Lab 2 
                                                             and later
-  116 00000018         SEVENSEG
-  117 00000018 00000C18        DCD              0x00000C18  ; Address of 7-Segm
+  117 00000018         SEVENSEG
+  118 00000018 00000C18        DCD              0x00000C18  ; Address of 7-Segm
                                                             ent LEDs. Used only
                                                              in Lab 2 and later
                                                             
-  118 0000001C         
-  119 0000001C         ; Rest of the constants should be declared below.
-  120 0000001C         ZERO
-  121 0000001C 00000000        DCD              0x00000000  ; constant 0
-  122 00000020         LSB_MASK
-  123 00000020 000000FF        DCD              0x000000FF  ; constant 0xFF
-  124 00000024         DELAY_VAL
-  125 00000024 00000002        DCD              0x00000002  ; delay time.
-  126 00000028         variable1_addr
-  127 00000028 00000000        DCD              variable1   ; address of variab
+  119 0000001C         
+  120 0000001C         ; Rest of the constants should be declared below.
+  121 0000001C         ZERO
+  122 0000001C 00000000        DCD              0x00000000  ; constant 0
+  123 00000020         LSB_MASK
+  124 00000020 000000FF        DCD              0x000000FF  ; constant 0xFF
+  125 00000024         DELAY_VAL
+  126 00000024 00000002        DCD              0x00000002  ; delay time.
+  127 00000028         variable1_addr
+  128 00000028 00000000        DCD              variable1   ; address of variab
                                                             le1. Required since
                                                              we are avoiding ps
                                                             eudo-instructions /
                                                             / unsigned int * co
                                                             nst variable1_addr 
                                                             = &variable1;
-  128 0000002C         constant1
-  129 0000002C ABCD1234        DCD              0xABCD1234  ; // const unsigned
+  129 0000002C         constant1
+  130 0000002C ABCD1234        DCD              0xABCD1234  ; // const unsigned
                                                              int constant1 = 0x
                                                             ABCD1234;
-  130 00000030         string1
-  131 00000030 0D 0A 57 
+  131 00000030         string1
+  132 00000030 0D 0A 57 
               65 6C 63 
               6F 6D 65 
               20 74 6F 
               20 43 47 
               33 32 30 
-              37 2E 2E 
-              0D 0A 00         DCB              "\r\nWelcome to CG3207..\r\n",0
 
 
 
 ARM Macro Assembler    Page 6 
 
 
+              37 2E 2E 
+              0D 0A 00         DCB              "\r\nWelcome to CG3207..\r\n",0
  
                                                             ; // unsigned char 
                                                             string1[] = "Hello 
@@ -339,32 +341,32 @@ ARM Macro Assembler    Page 6
                                                             ple of 4, but the w
                                                             arning is safe to i
                                                             gnore
-  132 00000048         stringptr
-  133 00000048 00000000        DCD              string1     ;
-  134 0000004C         
-  135 0000004C         ; ------- <constant memory (ROM mapped to Data Memory) e
+  133 00000048         stringptr
+  134 00000048 00000000        DCD              string1     ;
+  135 0000004C         
+  136 0000004C         ; ------- <constant memory (ROM mapped to Data Memory) e
                        nds> 
-  136 0000004C         
   137 0000004C         
-  138 0000004C                 AREA             VARIABLES, DATA, READWRITE, ALI
+  138 0000004C         
+  139 0000004C                 AREA             VARIABLES, DATA, READWRITE, ALI
 GN=9
-  139 00000000         ; ------- <variable memory (RAM mapped to Data Memory) b
+  140 00000000         ; ------- <variable memory (RAM mapped to Data Memory) b
                        egins>
-  140 00000000         ; All variables should be declared in this section. This
+  141 00000000         ; All variables should be declared in this section. This
                         section is read-write.
-  141 00000000         ; Total number of variables should not exceed 128. 
-  142 00000000         ; No initialization possible in this region. In other wo
+  142 00000000         ; Total number of variables should not exceed 128. 
+  143 00000000         ; No initialization possible in this region. In other wo
                        rds, you should write to a location before you can read 
                        from it (i.e., write to a location using STR before read
                        ing using LDR).
-  143 00000000         
-  144 00000000         variable1
-  145 00000000 00000000        DCD              0x00000000  ;  // unsigned int 
+  144 00000000         
+  145 00000000         variable1
+  146 00000000 00000000        DCD              0x00000000  ;  // unsigned int 
                                                             variable1;
-  146 00000004         ; ------- <variable memory (RAM mapped to Data Memory) e
+  147 00000004         ; ------- <variable memory (RAM mapped to Data Memory) e
                        nds> 
-  147 00000004         
-  148 00000004                 END
+  148 00000004         
+  149 00000004                 END
 Command Line: --debug --xref --apcs=interwork --depend=HelloWorld.d -oHelloWorl
 d.o -ID:\Keil\ARM\RV31\INC -ID:\Keil\ARM\CMSIS\Include --predefine="__EVAL SETA
  1" --list=HelloWorld.lst HelloWorld.s
@@ -374,13 +376,13 @@ d.o -ID:\Keil\ARM\RV31\INC -ID:\Keil\ARM\CMSIS\Include --predefine="__EVAL SETA
 ARM Macro Assembler    Page 1 Alphabetic symbol ordering
 Relocatable symbols
 
-DONE_PRINT_S 000000D0
+DONE_PRINT_S 000000D4
 
 Symbol: DONE_PRINT_S
    Definitions
-      At line 88 in file HelloWorld.s
+      At line 89 in file HelloWorld.s
    Uses
-      At line 80 in file HelloWorld.s
+      At line 81 in file HelloWorld.s
 Comment: DONE_PRINT_S used once
 ECHO_A 00000030
 
@@ -406,23 +408,23 @@ Symbol: MYCODE
    Uses
       None
 Comment: MYCODE unused
-NEXTCHAR 000000A0
+NEXTCHAR 000000A4
 
 Symbol: NEXTCHAR
    Definitions
-      At line 74 in file HelloWorld.s
+      At line 75 in file HelloWorld.s
    Uses
-      At line 78 in file HelloWorld.s
-      At line 85 in file HelloWorld.s
+      At line 79 in file HelloWorld.s
+      At line 86 in file HelloWorld.s
 
-PRINT_S 00000098
+PRINT_S 0000009C
 
 Symbol: PRINT_S
    Definitions
-      At line 70 in file HelloWorld.s
+      At line 71 in file HelloWorld.s
    Uses
-      At line 64 in file HelloWorld.s
-      At line 87 in file HelloWorld.s
+      At line 65 in file HelloWorld.s
+      At line 88 in file HelloWorld.s
 
 WAIT_A 0000001C
 
@@ -432,7 +434,7 @@ Symbol: WAIT_A
    Uses
       At line 32 in file HelloWorld.s
       At line 43 in file HelloWorld.s
-      At line 65 in file HelloWorld.s
+      At line 66 in file HelloWorld.s
 
 
 
@@ -449,13 +451,13 @@ Symbol: WAIT_CR
       At line 48 in file HelloWorld.s
       At line 60 in file HelloWorld.s
 
-halt 000000D4
+halt 000000D8
 
 Symbol: halt
    Definitions
-      At line 91 in file HelloWorld.s
-   Uses
       At line 92 in file HelloWorld.s
+   Uses
+      At line 93 in file HelloWorld.s
 Comment: halt used once
 9 symbols
 
@@ -468,7 +470,7 @@ CONSOLE 0000000C
 
 Symbol: CONSOLE
    Definitions
-      At line 110 in file HelloWorld.s
+      At line 111 in file HelloWorld.s
    Uses
       At line 24 in file HelloWorld.s
 Comment: CONSOLE used once
@@ -476,7 +478,7 @@ CONSOLE_IN_valid 00000010
 
 Symbol: CONSOLE_IN_valid
    Definitions
-      At line 112 in file HelloWorld.s
+      At line 113 in file HelloWorld.s
    Uses
       At line 23 in file HelloWorld.s
 Comment: CONSOLE_IN_valid used once
@@ -484,7 +486,7 @@ CONSOLE_OUT_ready 00000014
 
 Symbol: CONSOLE_OUT_ready
    Definitions
-      At line 114 in file HelloWorld.s
+      At line 115 in file HelloWorld.s
    Uses
       At line 22 in file HelloWorld.s
 Comment: CONSOLE_OUT_ready used once
@@ -492,7 +494,7 @@ CONSTANTS 00000000
 
 Symbol: CONSTANTS
    Definitions
-      At line 97 in file HelloWorld.s
+      At line 98 in file HelloWorld.s
    Uses
       None
 Comment: CONSTANTS unused
@@ -500,7 +502,7 @@ DELAY_VAL 00000024
 
 Symbol: DELAY_VAL
    Definitions
-      At line 124 in file HelloWorld.s
+      At line 125 in file HelloWorld.s
    Uses
       None
 Comment: DELAY_VAL unused
@@ -508,7 +510,7 @@ DIPS 00000004
 
 Symbol: DIPS
    Definitions
-      At line 106 in file HelloWorld.s
+      At line 107 in file HelloWorld.s
    Uses
       None
 Comment: DIPS unused
@@ -516,7 +518,7 @@ LEDS 00000000
 
 Symbol: LEDS
    Definitions
-      At line 104 in file HelloWorld.s
+      At line 105 in file HelloWorld.s
    Uses
       At line 26 in file HelloWorld.s
 Comment: LEDS used once
@@ -530,7 +532,7 @@ ARM Macro Assembler    Page 2 Alphabetic symbol ordering
 Relocatable symbols
 
    Definitions
-      At line 122 in file HelloWorld.s
+      At line 123 in file HelloWorld.s
    Uses
       At line 21 in file HelloWorld.s
 Comment: LSB_MASK used once
@@ -538,7 +540,7 @@ PBS 00000008
 
 Symbol: PBS
    Definitions
-      At line 108 in file HelloWorld.s
+      At line 109 in file HelloWorld.s
    Uses
       None
 Comment: PBS unused
@@ -546,7 +548,7 @@ SEVENSEG 00000018
 
 Symbol: SEVENSEG
    Definitions
-      At line 116 in file HelloWorld.s
+      At line 117 in file HelloWorld.s
    Uses
       At line 25 in file HelloWorld.s
 Comment: SEVENSEG used once
@@ -554,7 +556,7 @@ ZERO 0000001C
 
 Symbol: ZERO
    Definitions
-      At line 120 in file HelloWorld.s
+      At line 121 in file HelloWorld.s
    Uses
       At line 20 in file HelloWorld.s
 Comment: ZERO used once
@@ -562,7 +564,7 @@ constant1 0000002C
 
 Symbol: constant1
    Definitions
-      At line 128 in file HelloWorld.s
+      At line 129 in file HelloWorld.s
    Uses
       None
 Comment: constant1 unused
@@ -570,23 +572,23 @@ string1 00000030
 
 Symbol: string1
    Definitions
-      At line 130 in file HelloWorld.s
+      At line 131 in file HelloWorld.s
    Uses
-      At line 133 in file HelloWorld.s
+      At line 134 in file HelloWorld.s
 Comment: string1 used once
 stringptr 00000048
 
 Symbol: stringptr
    Definitions
-      At line 132 in file HelloWorld.s
+      At line 133 in file HelloWorld.s
    Uses
-      At line 62 in file HelloWorld.s
+      At line 63 in file HelloWorld.s
 Comment: stringptr used once
 variable1_addr 00000028
 
 Symbol: variable1_addr
    Definitions
-      At line 126 in file HelloWorld.s
+      At line 127 in file HelloWorld.s
    Uses
 
 
@@ -607,7 +609,7 @@ VARIABLES 00000000
 
 Symbol: VARIABLES
    Definitions
-      At line 138 in file HelloWorld.s
+      At line 139 in file HelloWorld.s
    Uses
       None
 Comment: VARIABLES unused
@@ -615,9 +617,9 @@ variable1 00000000
 
 Symbol: variable1
    Definitions
-      At line 144 in file HelloWorld.s
+      At line 145 in file HelloWorld.s
    Uses
-      At line 127 in file HelloWorld.s
+      At line 128 in file HelloWorld.s
 Comment: variable1 used once
 2 symbols
 357 symbols in table
