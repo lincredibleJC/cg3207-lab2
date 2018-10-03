@@ -2,10 +2,10 @@
 # Vivado v2016.2 (64-bit)
 # SW Build 1577090 on Thu Jun  2 16:32:40 MDT 2016
 # IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
-# Start of session at: Wed Oct 03 14:46:58 2018
-# Process ID: 5108
+# Start of session at: Wed Oct 03 14:27:52 2018
+# Process ID: 15876
 # Current directory: C:/Users/Yingchen/Documents/GitHub/cg3207-lab2
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent16304 C:\Users\Yingchen\Documents\GitHub\cg3207-lab2\project_2.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent13848 C:\Users\Yingchen\Documents\GitHub\cg3207-lab2\project_2.xpr
 # Log file: C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/vivado.log
 # Journal file: C:/Users/Yingchen/Documents/GitHub/cg3207-lab2\vivado.jou
 #-----------------------------------------------------------
@@ -16,7 +16,7 @@ Finished scanning sources
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Vivado/Vivado/2016.2/data/ip'.
-open_project: Time (s): cpu = 00:00:11 ; elapsed = 00:00:05 . Memory (MB): peak = 738.355 ; gain = 99.586
+open_project: Time (s): cpu = 00:00:12 ; elapsed = 00:00:07 . Memory (MB): peak = 764.629 ; gain = 139.461
 update_compile_order -fileset sources_1
 launch_simulation
 INFO: [USF-XSim-27] Simulation object is 'sim_1'
@@ -85,8 +85,8 @@ Built simulation snapshot test_Wrapper_behav
     ** Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 
 source C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/project_2.sim/sim_1/behav/xsim.dir/test_Wrapper_behav/webtalk/xsim_webtalk.tcl -notrace
-INFO: [Common 17-206] Exiting Webtalk at Wed Oct 03 14:47:19 2018...
-INFO: [USF-XSim-69] 'elaborate' step finished in '3' seconds
+INFO: [Common 17-206] Exiting Webtalk at Wed Oct 03 14:28:31 2018...
+INFO: [USF-XSim-69] 'elaborate' step finished in '4' seconds
 INFO: [USF-XSim-4] XSim::Simulate design
 INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/project_2.sim/sim_1/behav'
 INFO: [USF-XSim-98] *** Running xsim
@@ -108,9 +108,10 @@ source test_Wrapper.tcl
 # run 1000ns
 INFO: [USF-XSim-96] XSim completed. Design snapshot 'test_Wrapper_behav' loaded.
 INFO: [USF-XSim-97] XSim simulation ran for 1000ns
-launch_simulation: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 763.566 ; gain = 0.840
+launch_simulation: Time (s): cpu = 00:00:05 ; elapsed = 00:00:08 . Memory (MB): peak = 776.832 ; gain = 10.836
 run 100 us
+save_wave_config {C:/Users/Yingchen/Documents/GitHub/cg3207-lab2/test_Wrapper_behav.wcfg}
 close_sim
 INFO: [Simtcl 6-16] Simulation closed
 exit
-INFO: [Common 17-206] Exiting Vivado at Wed Oct 03 14:47:48 2018...
+INFO: [Common 17-206] Exiting Vivado at Wed Oct 03 14:37:43 2018...
