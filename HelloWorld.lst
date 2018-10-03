@@ -184,29 +184,30 @@ ARM Macro Assembler    Page 3
    72 0000009C E5901000        LDR              R1, [R0]    ; load the word (4 
                                                             characters) to be d
                                                             isplayed
-   73 000000A0         ;STR R1, [R11] ; write to seven segment display
-   74 000000A0 E2863004        ADD              R3, R6, #4  ; byte counter
-   75 000000A4         NEXTCHAR
-   76 000000A4 E5984000        LDR              R4, [R8]    ; check if CONSOLE 
+   73 000000A0 E58B1000        STR              R1, [R11]   ; write to seven se
+                                                            gment display
+   74 000000A4 E2863004        ADD              R3, R6, #4  ; byte counter
+   75 000000A8         NEXTCHAR
+   76 000000A8 E5984000        LDR              R4, [R8]    ; check if CONSOLE 
                                                             is ready to send a 
                                                             new character
-   77 000000A8 E0842146        ADD              R2, R4, R6, ASR #0x02 ; Improve
+   77 000000AC E0842146        ADD              R2, R4, R6, ASR #0x02 ; Improve
                                                             ment: DP with immed
-                                                            iate-shifted regist
 
 
 
 ARM Macro Assembler    Page 4 
 
 
+                                                            iate-shifted regist
                                                             er
-   78 000000AC E3520000        CMP              R2, #0
-   79 000000B0 0AFFFFFB        BEQ              NEXTCHAR    ; not ready, contin
+   78 000000B0 E3520000        CMP              R2, #0
+   79 000000B4 0AFFFFFB        BEQ              NEXTCHAR    ; not ready, contin
                                                             ue waiting
-   80 000000B4 E0112007        ANDS             R2, R1, R7  ; apply LSB_MASK
-   81 000000B8 0A000005        BEQ              DONE_PRINT_S ; null terminator 
+   80 000000B8 E0112007        ANDS             R2, R1, R7  ; apply LSB_MASK
+   81 000000BC 0A000006        BEQ              DONE_PRINT_S ; null terminator 
                                                             ('\0') detected
-   82 000000BC E58A1000        STR              R1, [R10]   ; write to UART the
+   82 000000C0 E58A1000        STR              R1, [R10]   ; write to UART the
                                                              Byte[4-R3] of the 
                                                             original word (comp
                                                             osed of 4 character
@@ -217,34 +218,34 @@ ARM Macro Assembler    Page 4
                                                             d LEDs/UART display
                                                             s only [7:0] of the
                                                              written word)
-   83 000000C0         ;STR R1, [R12] ; write to LEDS
-   84 000000C0 E0861421        ADD              R1, R6, R1, LSR #8 ; shift so t
+   83 000000C4 E58C1000        STR              R1, [R12]   ; write to LEDS
+   84 000000C8 E0861421        ADD              R1, R6, R1, LSR #8 ; shift so t
                                                             hat the next charac
                                                             ter comes into LSB
-   85 000000C4 E2533001        SUBS             R3, #1
-   86 000000C8 1AFFFFF5        BNE              NEXTCHAR    ; check and print t
+   85 000000CC E2533001        SUBS             R3, #1
+   86 000000D0 1AFFFFF4        BNE              NEXTCHAR    ; check and print t
                                                             he next character
-   87 000000CC E2800004        ADD              R0, #4      ; point to next wor
+   87 000000D4 E2800004        ADD              R0, #4      ; point to next wor
                                                             d (4 characters)
-   88 000000D0 EAFFFFF1        B                PRINT_S
-   89 000000D4         DONE_PRINT_S
-   90 000000D4 E28EF000        ADD              R15, R14, #0 ; return from the 
+   88 000000D8 EAFFFFEF        B                PRINT_S
+   89 000000DC         DONE_PRINT_S
+   90 000000DC E28EF000        ADD              R15, R14, #0 ; return from the 
                                                             subroutine
-   91 000000D8         
-   92 000000D8         halt
-   93 000000D8 EAFFFFFE        B                halt        ; infinite loop to 
+   91 000000E0         
+   92 000000E0         halt
+   93 000000E0 EAFFFFFE        B                halt        ; infinite loop to 
                                                             halt computation. /
                                                             / A program should 
                                                             not "terminate" wit
                                                             hout an operating s
                                                             ystem to return con
                                                             trol to
-   94 000000DC         ; keep halt B halt as the last line of your code.
-   95 000000DC         ; ------- <\code memory (ROM mapped to Instruction Memor
+   94 000000E4         ; keep halt B halt as the last line of your code.
+   95 000000E4         ; ------- <\code memory (ROM mapped to Instruction Memor
                        y) ends>
-   96 000000DC         
-   97 000000DC         
-   98 000000DC                 AREA             CONSTANTS, DATA, READONLY, ALIG
+   96 000000E4         
+   97 000000E4         
+   98 000000E4                 AREA             CONSTANTS, DATA, READONLY, ALIG
 N=9
    99 00000000         ; ------- <constant memory (ROM mapped to Data Memory) b
                        egins>
@@ -257,13 +258,13 @@ N=9
                        an load it repeatedly.
   103 00000000         
   104 00000000         ;Peripheral pointers
-  105 00000000         LEDS
 
 
 
 ARM Macro Assembler    Page 5 
 
 
+  105 00000000         LEDS
   106 00000000 00000C00        DCD              0x00000C00  ; Address of LEDs. 
                                                             //volatile unsigned
                                                              int * const LEDS =
@@ -322,13 +323,13 @@ ARM Macro Assembler    Page 5
               6F 6D 65 
               20 74 6F 
               20 43 47 
-              33 32 30 
 
 
 
 ARM Macro Assembler    Page 6 
 
 
+              33 32 30 
               37 2E 2E 
               0D 0A 00         DCB              "\r\nWelcome to CG3207..\r\n",0
  
@@ -376,7 +377,7 @@ d.o -ID:\Keil\ARM\RV31\INC -ID:\Keil\ARM\CMSIS\Include --predefine="__EVAL SETA
 ARM Macro Assembler    Page 1 Alphabetic symbol ordering
 Relocatable symbols
 
-DONE_PRINT_S 000000D4
+DONE_PRINT_S 000000DC
 
 Symbol: DONE_PRINT_S
    Definitions
@@ -408,7 +409,7 @@ Symbol: MYCODE
    Uses
       None
 Comment: MYCODE unused
-NEXTCHAR 000000A4
+NEXTCHAR 000000A8
 
 Symbol: NEXTCHAR
    Definitions
@@ -451,7 +452,7 @@ Symbol: WAIT_CR
       At line 48 in file HelloWorld.s
       At line 60 in file HelloWorld.s
 
-halt 000000D8
+halt 000000E0
 
 Symbol: halt
    Definitions
